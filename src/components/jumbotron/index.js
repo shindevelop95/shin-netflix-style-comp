@@ -3,9 +3,12 @@ import {Container, Pane, Title, SubTitle,Image ,Inner,Item} from './styles/jumbo
 function Jumbotron({children,direction = 'row',...restProps}) {
     return (
         <div>
-           <Inner direction = {direction}>
-             {children}
-           </Inner>
+          <Item  {...restProps}>
+            <Inner direction = {direction}>
+              {children}
+            </Inner>
+          </Item>
+           
         </div>
     )
 }
