@@ -14,8 +14,13 @@ Accordion.Title = function AccordionTitle({children, ...restProps}){
     return <Title {...restProps}>{children}</Title>
 }
 
+Accordion.Frame = function AccordionFrame({children, ...restProps}){
+    return <Frame {...restProps}>{children}</Frame>
+}
+
 Accordion.Body = function AccordionBody({children, ...restProps}){
-    return <Body {...restProps}>{children}</Body>
+    const {toggleShow} = useContext(ToggleContext);
+    return (<Body className={toggleShow ? 'open' : 'closed'} {...restProps}><span>{children}</span></Body>);
 }
 
 Accordion.Item = function AccordionItem({children, ...restProps}){
@@ -27,6 +32,11 @@ Accordion.Item = function AccordionItem({children, ...restProps}){
 
 Accordion.Header = function AccordionHeader({children, ...restProps}){
     const {toggleShow,setToggleShow} = useContext(ToggleContext);
-    return <Header onClick={() => setToggleShow((toggleShow) => !toggleShow)} {...restProps}>{children}</Header>
+    return <Header onClick={() => setToggleShow((toggleShow) => !toggleShow)} {...restProps}>{children}
+        {toggleShow ? (
+        <img src="/image/icons/close-slim.png" alt="Close"/>):(
+            <img src="/images/icons/add.png" alt="Open"/>
+        )}
+    </Header>
 }
 

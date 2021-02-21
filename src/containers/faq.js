@@ -14,7 +14,7 @@ export function FaqsContainer(){
           </Accordion.Item>
         ))}
    
-
+            <Accordion.Item/>
       
     </Accordion>
     );
