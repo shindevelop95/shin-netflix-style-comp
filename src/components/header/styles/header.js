@@ -168,9 +168,9 @@ export const Feature = styled(Container)`
   flex-direction: column;
   align-items: normal;
   width: 50%;
-  @media (max-width: 1100px) {
+ /* @media (max-width: 1100px) {
     display: none;
-  }
+  }*/
 `;
 
 export const FeatureCallOut = styled.h2`
