@@ -6,6 +6,7 @@ import * as ROUTES from '../constants/routes';
 import logo from '../logo.svg';
 
 export function BrowseContainer({slides}){
+    const [searchTerm,setSearchTerm] = useState('');
     const [profile,setProfile] = useState({});
     const {firebase} = useContext(FirebaseContext);
     const [loading,setLoading] = useState(true);
@@ -17,12 +18,14 @@ export function BrowseContainer({slides}){
             setLoading(false);
         }, 3000)
     }, [profile.displayName])
+    
     return profile.displayName ? (
         
         <>
         {loading ? 
             <Loading src={user.photoURL}/>
         :<Loading.ReleaseBody/>}
+        
         <Header src="joker1" dontShowOnSmallViewPort>
             <Header.Frame>
                 <Header.Group>
@@ -31,6 +34,7 @@ export function BrowseContainer({slides}){
                     <Header.TextLink>Films</Header.TextLink>
                 </Header.Group>
                 <Header.Group>
+                <Header.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
                     <Header.Profile>
                         <Header.Picture src={user.photoURL}/>
                         <Header.Dropdown>
@@ -52,6 +56,7 @@ export function BrowseContainer({slides}){
                 <Header.Text>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                 </Header.Text>
+                <Header.PlayButton>Play</Header.PlayButton>
             </Header.Feature>
         </Header>
         </>):

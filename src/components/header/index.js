@@ -1,6 +1,6 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {Link as ReactRouterLink} from 'react-router-dom';
-import {Feature,Dropdown,Background,Profile, Group, Picture, Link, FeatureCallOut,Container,Logo, ButtonLink,Text} from './styles/header'
+import {Feature,PlayButton,Dropdown,Background,Profile, Group, Picture, Link, FeatureCallOut,Container,Logo, ButtonLink,Text,Search,SearchInput,SearchIcon} from './styles/header'
 
 export default function Header({ bg = true, children, ...restProps }) {
     return bg ? (
@@ -12,9 +12,28 @@ export default function Header({ bg = true, children, ...restProps }) {
     );
   }
 
+Header.PlayButton = function HeaderPlayButton({children,...restProps}){
+    return <PlayButton {...restProps}>{children}</PlayButton>
+}
+
 Header.Feature = function HeaderFeature({children,...restProps}){
   return <Feature {...restProps}>{children}</Feature>
 }
+
+Header.Search = function HeaderSearch({searchTerm, setSearchTerm, ...restProps}){
+  const [searchActive, setSearchActive] = useState(false);
+  return (<Search {...restProps}>
+    <SearchIcon onClick={() => setSearchActive((searchActive) => !searchActive)}>
+      <img src="images/icons/search.png" alt="Search"/>
+    </SearchIcon>
+    <SearchInput value={searchTerm} 
+                 onChange={(e) => setSearchTerm(e.target.value)}
+                 placeholder="Search films and series"
+                 active={searchActive}
+    />
+  </Search>)
+}
+
 
 Header.Dropdown = function HeaderDropdown({children,...restProps}){
   return <Dropdown {...restProps}>{children}</Dropdown>
